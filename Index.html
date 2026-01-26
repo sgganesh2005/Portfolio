@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio | Gandhi Ganesh .S</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES (THEMING) --- */
+        :root {
+            /* Light Mode Variables (Fallback) */
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-grey: #64748b;
+            --border-color: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --shadow-color: rgba(0,0,0,0.08);
+            
+            /* Accents (Persistent across themes) */
+            --gradient-primary: linear-gradient(135deg, #d946ef 0%, #7c3aed 100%);
+            --gradient-text: linear-gradient(90deg, #c026d3 0%, #4f46e5 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(217, 70, 239, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            --accent-solid: #d946ef;
+        }
+
+        /* --- DARK MODE OVERRIDES (Active by Default via HTML class) --- */
+        body.dark-mode {
+            --bg-color: #0b0c10;
+            --card-bg: #131419;
+            --text-dark: #f8fafc;
+            --text-grey: #94a3b8;
+            --border-color: #2d2e32;
+            --nav-bg: rgba(11, 12, 16, 0.9);
+            --shadow-color: rgba(0,0,0,0.5);
+            --gradient-subtle: linear-gradient(135deg, rgba(217, 70, 239, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 18px 0;
+            transition: background 0.3s;
+        }
+
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-weight: 800; font-size: 1.5rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+
+        .nav-links { display: flex; gap: 35px; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-dark);
+            font-weight: 600; font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-solid); }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            cursor: pointer; padding: 8px; border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg); color: var(--text-dark);
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .theme-toggle:hover { border-color: var(--accent-solid); color: var(--accent-solid); box-shadow: 0 0 10px rgba(217, 70, 239, 0.3); }
+
+        /* --- HERO SECTION --- */
+        header {
+            text-align: center;
+            padding: 160px 20px 80px;
+            background: radial-gradient(circle at 50% 30%, rgba(217, 70, 239, 0.08) 0%, transparent 60%);
+        }
+
+        .hero-name {
+            font-size: 5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .summary-box {
+            max-width: 900px; margin: 0 auto;
+            background: var(--card-bg); padding: 40px 50px;
+            border-radius: 24px; box-shadow: 0 10px 40px -10px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            text-align: center; position: relative; overflow: hidden;
+            transition: background 0.3s, border 0.3s;
+        }
+        
+        .summary-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--gradient-primary);
+        }
+
+        .summary-box p { font-size: 1.15rem; color: var(--text-grey); }
+        .highlight { font-weight: 700; color: var(--accent-solid); }
+
+        /* --- TITLES --- */
+        .section-title {
+            text-align: center; font-size: 2.5rem; margin: 100px 0 60px;
+            font-weight: 800; color: var(--text-dark);
+            position: relative;
+        }
+
+        /* --- EXPERIENCE TIMELINE --- */
+        .timeline {
+            max-width: 850px; margin: 0 auto;
+            position: relative; padding: 20px;
+        }
+        .timeline::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 2px; background: var(--border-color); transform: translateX(-50%);
+        }
+        .timeline-item {
+            width: 46%; background: var(--card-bg); padding: 30px;
+            border-radius: 20px; box-shadow: 0 10px 30px -5px var(--shadow-color);
+            margin-bottom: 50px; position: relative; border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, background 0.3s, border 0.3s;
+        }
+        .timeline-item:hover { transform: translateY(-5px); border-color: var(--accent-solid);}
+        .timeline-item:nth-child(odd) { margin-left: auto; }
+        .timeline-item:nth-child(even) { margin-right: auto; text-align: right; }
+        
+        .timeline-dot {
+            position: absolute; top: 30px;
+            width: 16px; height: 16px; background: var(--card-bg);
+            border: 4px solid var(--accent-solid); border-radius: 50%; z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot { left: -50px; }
+        .timeline-item:nth-child(even) .timeline-dot { right: -50px; }
+
+        .role-date {
+            display: inline-block; background: var(--gradient-subtle);
+            color: var(--accent-solid); padding: 6px 12px;
+            border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            margin-bottom: 10px; font-family: 'JetBrains Mono';
+        }
+        .company { font-weight: 600; color: var(--accent-solid); margin-bottom: 15px; display: block; }
+        .timeline-item h3 { color: var(--text-dark); }
+
+        /* --- SKILLS GRID (SVG) --- */
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; max-width: 1200px; margin: 0 auto 40px; padding: 0 20px;
+        }
+        .skill-card {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 25px; display: flex; flex-direction: column; gap: 15px;
+            transition: 0.3s; box-shadow: 0 5px 20px -5px var(--shadow-color);
+        }
+        .skill-card:hover { 
+            border-color: var(--accent-solid); 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.3);
+        }
+        
+        .skill-icon-box {
+            width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: #fff;
+        }
+        .icon-tradingview { background: #2962ff; }
+        .icon-pinescript { background: #313338; }
+        .icon-sheets { background: #0f9d58; }
+        .icon-nse { background: #663399; }
+        .icon-chartink { background: #00bcd4; }
+        .icon-screener { background: #3f51b5; }
+
+        .skill-name { font-size: 1.2rem; font-weight: 700; margin: 0; color: var(--text-dark); }
+        .skill-desc { font-size: 0.9rem; color: var(--text-grey); margin: 0; }
+
+        /* Skill Pills */
+        .skills-pills {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+            max-width: 1000px; margin: 0 auto; padding: 0 20px;
+        }
+        .pill {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            padding: 10px 20px; border-radius: 50px; color: var(--text-grey); 
+            font-size: 0.95rem; font-weight: 600; transition: 0.3s;
+        }
+        .pill:hover { 
+            background: var(--gradient-primary); 
+            color: #fff; border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* --- PROJECTS GRID --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        
+        .category-header {
+            font-size: 1.4rem; margin: 60px 0 30px;
+            color: var(--text-dark); display: flex; align-items: center; gap: 10px;
+            font-weight: 700;
+        }
+        .category-header::before {
+            content: ''; display: block; width: 6px; height: 25px;
+            background: var(--gradient-primary); border-radius: 4px;
+        }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg); border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px -10px var(--shadow-color);
+            transition: all 0.4s ease; cursor: pointer;
+            text-decoration: none; display: block;
+        }
+        .card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--accent-solid);
+        }
+
+        .card-img-wrapper { height: 220px; width: 100%; overflow: hidden; position: relative; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+        .card:hover .card-img-wrapper img { transform: scale(1.05); }
+        
+        .card-info { padding: 25px; }
+        .card-info h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text-dark); font-weight: 700; }
+        .card-info p { font-size: 0.9rem; color: var(--text-grey); line-height: 1.6; }
+        .card-link-icon { float: right; color: var(--accent-solid); font-size: 1.2rem; }
+
+        /* --- FOOTER --- */
+        footer { margin-top: 120px; padding: 80px 20px; background: var(--card-bg); text-align: center; border-top: 1px solid var(--border-color); transition: background 0.3s; }
+        footer h2 { color: var(--text-dark); }
+        .cta-btn {
+            display: inline-block; padding: 16px 40px; margin: 10px;
+            border-radius: 50px; background: var(--gradient-primary); color: white;
+            text-decoration: none; font-weight: 700; transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(124, 58, 237, 0.5); }
+
+        /* --- LIGHTBOX --- */
+        #lightbox {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 2000;
+            justify-content: center; align-items: center; flex-direction: column;
+        }
+        #lightbox img { max-width: 90%; max-height: 80vh; border-radius: 12px; border: 2px solid var(--accent-solid);}
+        #caption { margin-top: 25px; font-size: 1.4rem; font-weight: 800; color: #fff; font-family: 'Outfit'; }
+        #close { position: absolute; top: 30px; right: 40px; font-size: 3rem; cursor: pointer; color: #fff; transition: 0.2s;}
+        #close:hover { color: var(--accent-solid); }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero-name { font-size: 3rem; letter-spacing: -1px; }
+            .section-title { font-size: 2rem; }
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 85%; margin-left: 50px !important; text-align: left !important; }
+            .timeline-dot { left: -42px !important; right: auto !important; }
+            .grid, .skills-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            header { padding-top: 120px; }
+            .summary-box { padding: 25px; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Professional Portfolio</div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Switch Theme">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header id="about">
+        <h1 class="hero-name">Gandhi Ganesh .S</h1>
+        <div class="summary-box">
+            <h3 style="color: var(--text-dark); margin-bottom: 15px; font-size: 1.5rem;">Professional Summary</h3>
+            <p>
+                Indian Stock Market Analyst with <span class="highlight">3 years of finance experience</span>. 
+                Bridging the gap between <span class="highlight">Artificial Intelligence</span>, <span class="highlight">Fundamental Investing</span>, and <span class="highlight">Technical Trading</span>. 
+                Expert in building custom Pine Script indicators and institutional-grade Google Sheets trackers. 
+                Passionate about disciplined risk management and market structure analysis.
+            </p>
+        </div>
+    </header>
+
+    <h2 class="section-title" id="experience">Professional Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h3>Stock Market Analyst / Trader</h3>
+            <span class="company">Self-Employed | India</span>
+            <span class="role-date">2023 – Present</span>
+            <p style="color: var(--text-grey); margin-top: 10px;">
+                Analyzed NIFTY & NIFTY 500 stocks. Built custom Google Sheets stock screeners using formulas. 
+                Designed rule-based trading setups and developed Pine Script indicators.
+            </p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h3>Freelance Mentor</h3>
+            <span class="company">Maverickk Trading Academy</span>
+            <span class="role-date">March 2024 - Oct 2025</span>
+            <p style="color: var(--text-grey); margin-top: 10px;">
+                Mentored aspiring traders on Price Action strategies, psychology, and risk management. 
+                Provided live market guidance and technical analysis training.
+            </p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h3>Finance Associate / Analyst</h3>
+            <span class="company">Finance Sector</span>
+            <span class="role-date">2 Years Experience</span>
+            <p style="color: var(--text-grey); margin-top: 10px;">
+                Worked with financial data analysis and reporting. Strengthened understanding of market instruments, risk assessment, and capital management.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="skills">Technical Tools & Platforms</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <div class="skill-icon-box icon-tradingview">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+            </div>
+            <div>
+                <h4 class="skill-name">TradingView</h4>
+                <p class="skill-desc">Advanced charting & analysis</p>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon-box icon-pinescript">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+            </div>
+            <div>
+                <h4 class="skill-name">Pine Script</h4>
+                <p class="skill-desc">Custom indicator development</p>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon-box icon-nse">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+            </div>
+            <div>
+                <h4 class="skill-name">NSE India</h4>
+                <p class="skill-desc">Market data & research</p>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon-box icon-sheets">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+            </div>
+            <div>
+                <h4 class="skill-name">Google Sheets</h4>
+                <p class="skill-desc">Data-driven stock filtering</p>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon-box icon-chartink">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <div>
+                <h4 class="skill-name">Chartink</h4>
+                <p class="skill-desc">Stock screening platform</p>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon-box icon-screener">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5z"/></svg>
+            </div>
+            <div>
+                <h4 class="skill-name">Screener.in</h4>
+                <p class="skill-desc">Fundamental analysis tool</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="skills-pills">
+        <div class="pill">Technical Analysis</div>
+        <div class="pill">Price Action</div>
+        <div class="pill">Smart Money Concepts</div>
+        <div class="pill">VWAP Trading</div>
+        <div class="pill">Support & Resistance</div>
+        <div class="pill">Risk Management</div>
+        <div class="pill">Intraday Trading</div>
+        <div class="pill">Swing Trading</div>
+        <div class="pill">Sector Analysis</div>
+        <div class="pill">Market Structure</div>
+    </div>
+
+    <h2 class="section-title" id="projects">Featured Projects</h2>
+    <div class="container">
+        
+        <div class="category-header">Google Sheets Automation</div>
+        <div class="grid">
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-25 133102.png" alt="Index and Gold Tracker">
+                </div>
+                <div class="card-info">
+                    <h3>Index and Gold Tracker</h3>
+                    <p>Live automated dashboard tracking major indices and Gold rates in real-time.</p>
+                </div>
+            </div>
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-25 133148.png" alt="Sectoral Analysis">
+                </div>
+                <div class="card-info">
+                    <h3>Sectoral Analysis</h3>
+                    <p>Heatmap visualization of Nifty 500 sectors to identify bullish/bearish trends.</p>
+                </div>
+            </div>
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-25 133352.png" alt="FII / DII Data Tracker">
+                </div>
+                <div class="card-info">
+                    <h3>FII / DII Data Tracker</h3>
+                    <p>Institutional flow tracker monitoring daily cash segment activity.</p>
+                </div>
+            </div>
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-25 234015.png" alt="Stock Analyzer">
+                </div>
+                <div class="card-info">
+                    <h3>Stock Analyzer</h3>
+                    <p>Deep-dive individual stock analysis tool with volume and delivery metrics.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-header">Client Projects & Strategy Development</div>
+        <div class="grid">
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-26 123022.png" alt="Client Project: 30-Min Midpoint Strategy">
+                </div>
+                <div class="card-info">
+                    <h3>Custom Pine Script Strategy</h3>
+                    <p>Automated indicator featuring Entry Levels based on 30-minute Midpoint calculations and Volatility Breakouts.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-header">Live Market Trackers (Links)</div>
+        <div class="grid">
+            <a href="https://docs.google.com/spreadsheets/d/1SHHaiH2WXAMO-3tT7fkj_b1y4Hov3zGS7hqRqRKBeoQ/edit?usp=sharing" target="_blank" class="card">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 133102.png" alt="Live Market Tracker"></div>
+                <div class="card-info">
+                    <h3>Live Nifty 500 Tracker <span class="card-link-icon">↗</span></h3>
+                    <p>Real-time tracking of Nifty 500 stocks, FII/DII Data, and Intraday Stock Selection algorithms.</p>
+                </div>
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1Q7k5_mRHwNWy3J4siNSRRyiXyvzgPF38bi66o4GQ-rE/edit?usp=sharing" target="_blank" class="card">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 133720.png" alt="Investment Portfolio"></div>
+                <div class="card-info">
+                    <h3>Live Portfolio Tracker (Mar 2025) <span class="card-link-icon">↗</span></h3>
+                    <p>Automated investment portfolio tracking with real-time P&L updates and fundamental metrics.</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="category-header">Technical Indicators (Pine Script)</div>
+        <div class="grid">
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 233248.png" alt="Nifty Options S&R"></div>
+                <div class="card-info"><h3>Nifty Options S&R</h3><p>Mathematical Support & Resistance algorithm tailored for Option Buying.</p></div>
+            </div>
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 233143.png" alt="Nifty Daily Levels"></div>
+                <div class="card-info"><h3>Nifty Daily Levels</h3><p>Automated trend confirmation system for intraday precision.</p></div>
+            </div>
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 232951.png" alt="XAUUSD Gold S&R"></div>
+                <div class="card-info"><h3>XAUUSD Gold Levels</h3><p>Spot Gold Support & Resistance automation.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <h2>Let's Work Together</h2>
+        <p style="color: var(--text-grey); margin-bottom: 40px; font-size: 1.1rem;">Open for opportunities in Quantitative Analysis & Trading.</p>
+        
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+            <a href="tel:9361724601" class="cta-btn">📞 +91 93617 24601</a>
+            <a href="mailto:sgganesh2005@gmail.com" class="cta-btn">📧 Email Me</a>
+            <a href="https://www.linkedin.com/in/gandhi-ganesh-s-27b2a0330" target="_blank" class="cta-btn">💼 LinkedIn</a>
+        </div>
+        
+        <div style="margin-top: 60px; font-size: 0.9rem; color: var(--text-grey);">
+            © 2026 Gandhi Ganesh .S | Built with Precision
+        </div>
+    </footer>
+
+    <div id="lightbox" onclick="closeLightbox(event)">
+        <span id="close" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        function openLightbox(element) {
+            if(element.tagName === 'A') return;
+            const img = element.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const caption = document.getElementById('caption');
+            
+            lightboxImg.src = img.src;
+            caption.innerText = img.alt;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox(e) {
+            if (e.target.id === 'lightbox' || e.target.id === 'close') {
+                document.getElementById('lightbox').style.display = 'none';
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            // Toggle the class
+            body.classList.toggle('dark-mode');
+            
+            // Check state AFTER toggle to set correct icon
+            if (body.classList.contains('dark-mode')) {
+                // Now in Dark Mode -> Show Sun (to switch to light)
+                icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+            } else {
+                // Now in Light Mode -> Show Moon (to switch to dark)
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+            }
+        }
+    </script>
+</body>
+</html>
