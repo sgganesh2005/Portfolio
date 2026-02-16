@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
     <style>
         /* --- CSS VARIABLES (THEMING) --- */
         :root {
-            /* Light Mode Variables (Fallback) */
+            /* Light Mode Variables */
             --bg-color: #ffffff;
             --card-bg: #ffffff;
             --text-dark: #0f172a;
@@ -19,14 +18,14 @@
             --nav-bg: rgba(255, 255, 255, 0.9);
             --shadow-color: rgba(0,0,0,0.08);
             
-            /* Accents (Persistent across themes) */
+            /* Accents */
             --gradient-primary: linear-gradient(135deg, #d946ef 0%, #7c3aed 100%);
             --gradient-text: linear-gradient(90deg, #c026d3 0%, #4f46e5 100%);
             --gradient-subtle: linear-gradient(135deg, rgba(217, 70, 239, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
             --accent-solid: #d946ef;
         }
 
-        /* --- DARK MODE OVERRIDES (Active by Default via HTML class) --- */
+        /* --- DARK MODE OVERRIDES --- */
         body.dark-mode {
             --bg-color: #0b0c10;
             --card-bg: #131419;
@@ -177,7 +176,7 @@
         .company { font-weight: 600; color: var(--accent-solid); margin-bottom: 15px; display: block; }
         .timeline-item h3 { color: var(--text-dark); }
 
-        /* --- SKILLS GRID (SVG) --- */
+        /* --- SKILLS GRID --- */
         .skills-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px; max-width: 1200px; margin: 0 auto 40px; padding: 0 20px;
@@ -442,9 +441,141 @@
     </div>
 
     <h2 class="section-title" id="projects">Featured Projects</h2>
+    
     <div class="container">
         
-        <div class="category-header">Google Sheets Automation</div>
+        <div class="category-header">1. Client Projects & Strategy Development</div>
+        <div class="grid">
+            <a href="projects/pine-strategy.html" class="card">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-26 123022.png" alt="Client Project: 30-Min Midpoint Strategy">
+                </div>
+                <div class="card-info">
+                    <h3>Custom Pine Script Strategy</h3>
+                    <p>Automated indicator featuring Entry Levels based on 30-minute Midpoint calculations and Volatility Breakouts. <strong>(Click to view)</strong></p>
+                </div>
+            </a>
+        </div>
+
+        <div class="category-header">2. Technical Indicator (Pine Script)</div>
+        
+        <h4 style="margin: 30px 0 15px; color: var(--text-dark);">Automated Levels & Indicators</h4>
+        <div class="grid">
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="nifty.png" alt="Nifty Options Trend & Levels">
+                </div>
+                <div class="card-info">
+                    <h3>Nifty Options Levels</h3>
+                    <p>Live trend analysis with automated Support & Resistance levels.</p>
+                </div>
+            </div>
+            
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-25 233143.png" alt="Nifty Daily Levels">
+                </div>
+                <div class="card-info">
+                    <h3>Nifty Daily Levels</h3>
+                    <p>Automated trend confirmation system for intraday precision.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="Screenshot 2026-01-25 232951.png" alt="XAUUSD Gold S&R">
+                </div>
+                <div class="card-info">
+                    <h3>XAUUSD Gold Levels</h3>
+                    <p>Spot Gold Support & Resistance automation.</p>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="margin: 40px 0 15px; color: var(--text-dark);">Live Entry's (Based on Forex Levels)</h4>
+        <div class="grid">
+            
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="certificate.jpg" alt="Phase 1 Passed">
+                </div>
+                <div class="card-info">
+                    <h3>FundingPips Phase 1 Passed</h3>
+                    <p>Certified Passing of $5k Evaluation Phase 1.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="xauusd_weekly.png" alt="XAUUSD Weekly Level Setup">
+                </div>
+                <div class="card-info">
+                    <h3>XAUUSD Weekly Setup</h3>
+                    <p>Sniper entry based on weekly pivot analysis.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper">
+                    <img src="pnl.jpg" alt="Live Execution PnL">
+                </div>
+                <div class="card-info">
+                    <h3>Live Execution</h3>
+                    <p>Real-time PnL capture ($75 Dollars) from the XAUUSD setup.</p>
+                </div>
+            </div>
+            
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="usdjpy.png" alt="USDJPY Setup"></div>
+                <div class="card-info"><h3>USDJPY Setup</h3><p>Entry based on Forex Levels Indicator.</p></div>
+            </div>
+            
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="nq1.png" alt="NQ1! Futures"></div>
+                <div class="card-info"><h3>NQ1! Futures</h3><p>Entry based on Forex Levels Indicator.</p></div>
+            </div>
+
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="eurusd.png" alt="EURUSD Setup"></div>
+                <div class="card-info"><h3>EURUSD Setup</h3><p>Entry based on Forex Levels Indicator.</p></div>
+            </div>
+
+            <div class="card" onclick="openLightbox(this)">
+                <div class="card-img-wrapper"><img src="xauusd_intra.png" alt="XAUUSD Intraday"></div>
+                <div class="card-info"><h3>XAUUSD Intraday</h3><p>Entry based on Forex Levels Indicator.</p></div>
+            </div>
+        </div>
+
+        <div class="category-header">3. Live Market Trackers</div>
+        <div class="grid">
+            <a href="https://docs.google.com/spreadsheets/d/1SHHaiH2WXAMO-3tT7fkj_b1y4Hov3zGS7hqRqRKBeoQ/edit?usp=sharing" target="_blank" class="card">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 133102.png" alt="Live Nifty 500 Tracker"></div>
+                <div class="card-info">
+                    <h3>Live Nifty 500 Tracker <span class="card-link-icon">↗</span></h3>
+                    <p>Real-time tracking of Nifty 500 stocks, FII/DII Data, and Intraday Stock Selection.</p>
+                </div>
+            </a>
+            
+            <a href="https://docs.google.com/spreadsheets/d/1Q7k5_mRHwNWy3J4siNSRRyiXyvzgPF38bi66o4GQ-rE/edit?usp=sharing" target="_blank" class="card">
+                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 133720.png" alt="Investment Portfolio"></div>
+                <div class="card-info">
+                    <h3>Investment Portfolio (Mar 2025) <span class="card-link-icon">↗</span></h3>
+                    <p>Automated investment portfolio tracking with real-time P&L updates.</p>
+                </div>
+            </a>
+
+            <a href="https://docs.google.com/spreadsheets/d/1Q7k5_mRHwNWy3J4siNSRRyiXyvzgPF38bi66o4GQ-rE/edit?usp=sharing" target="_blank" class="card">
+                <div class="card-img-wrapper">
+                    <img src="journal.png" alt="Forex Journal Spreadsheet">
+                </div>
+                <div class="card-info">
+                    <h3>Forex Funded Journaling <span class="card-link-icon">↗</span></h3>
+                    <p>Live journaling of $5k FundingPips account (Phase 1 Passed).</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="category-header">4. Google Sheet Automation</div>
         <div class="grid">
             <div class="card" onclick="openLightbox(this)">
                 <div class="card-img-wrapper">
@@ -484,57 +615,11 @@
             </div>
         </div>
 
-        <div class="category-header">Client Projects & Strategy Development</div>
-        <div class="grid">
-            <div class="card" onclick="openLightbox(this)">
-                <div class="card-img-wrapper">
-                    <img src="Screenshot 2026-01-26 123022.png" alt="Client Project: 30-Min Midpoint Strategy">
-                </div>
-                <div class="card-info">
-                    <h3>Custom Pine Script Strategy</h3>
-                    <p>Automated indicator featuring Entry Levels based on 30-minute Midpoint calculations and Volatility Breakouts.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="category-header">Live Market Trackers (Links)</div>
-        <div class="grid">
-            <a href="https://docs.google.com/spreadsheets/d/1SHHaiH2WXAMO-3tT7fkj_b1y4Hov3zGS7hqRqRKBeoQ/edit?usp=sharing" target="_blank" class="card">
-                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 133102.png" alt="Live Market Tracker"></div>
-                <div class="card-info">
-                    <h3>Live Nifty 500 Tracker <span class="card-link-icon">↗</span></h3>
-                    <p>Real-time tracking of Nifty 500 stocks, FII/DII Data, and Intraday Stock Selection algorithms.</p>
-                </div>
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/1Q7k5_mRHwNWy3J4siNSRRyiXyvzgPF38bi66o4GQ-rE/edit?usp=sharing" target="_blank" class="card">
-                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 133720.png" alt="Investment Portfolio"></div>
-                <div class="card-info">
-                    <h3>Live Portfolio Tracker (Mar 2025) <span class="card-link-icon">↗</span></h3>
-                    <p>Automated investment portfolio tracking with real-time P&L updates and fundamental metrics.</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="category-header">Technical Indicators (Pine Script)</div>
-        <div class="grid">
-            <div class="card" onclick="openLightbox(this)">
-                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 233248.png" alt="Nifty Options S&R"></div>
-                <div class="card-info"><h3>Nifty Options S&R</h3><p>Mathematical Support & Resistance algorithm tailored for Option Buying.</p></div>
-            </div>
-            <div class="card" onclick="openLightbox(this)">
-                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 233143.png" alt="Nifty Daily Levels"></div>
-                <div class="card-info"><h3>Nifty Daily Levels</h3><p>Automated trend confirmation system for intraday precision.</p></div>
-            </div>
-            <div class="card" onclick="openLightbox(this)">
-                <div class="card-img-wrapper"><img src="Screenshot 2026-01-25 232951.png" alt="XAUUSD Gold S&R"></div>
-                <div class="card-info"><h3>XAUUSD Gold Levels</h3><p>Spot Gold Support & Resistance automation.</p></div>
-            </div>
-        </div>
     </div>
 
     <footer id="contact">
         <h2>Let's Work Together</h2>
-        <p style="color: var(--text-grey); margin-bottom: 40px; font-size: 1.1rem;">Open for opportunities in Quantitative Analysis & Trading.</p>
+        <p style="color: var(--text-grey); margin-bottom: 40px; font-size: 1.1rem;">Open for opportunities.</p>
         
         <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
             <a href="tel:9361724601" class="cta-btn">📞 +91 93617 24601</a>
@@ -555,7 +640,9 @@
 
     <script>
         function openLightbox(element) {
-            if(element.tagName === 'A') return;
+            // Prevent opening lightbox if it's a link
+            if(element.tagName === 'A' || element.closest('a')) return;
+            
             const img = element.querySelector('img');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -581,18 +668,13 @@
             
             // Check state AFTER toggle to set correct icon
             if (body.classList.contains('dark-mode')) {
-                // Now in Dark Mode -> Show Sun (to switch to light)
+                // Now in Dark Mode -> Show Sun
                 icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
             } else {
-                // Now in Light Mode -> Show Moon (to switch to dark)
+                // Now in Light Mode -> Show Moon
                 icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
             }
         }
     </script>
 </body>
 </html>
-
-
-
-
-
